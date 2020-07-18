@@ -50,6 +50,19 @@ http
             
                 res.end(data)
             })
+        } else if (urlPathName === '/name_comments') {
+
+            // 提取post中表单中的名字和评论内容（对象），并加上固定时间
+            var nameAndComments = urlPath.query
+            nameAndComments.dateTime = '2020-7-18'
+
+            // 在comments数组中添加post对象
+            comments.unshift(nameAndComments)
+
+            //重定向
+            res.statusCode = 302
+            res.setHeader('Location', '/')
+            res.end()
         } else {
 
             fs.readFile('./views/404.html', function (err, data) {
